@@ -26,7 +26,6 @@
           <li><a><i class="fa fa-home"></i> Menu <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('listing.index',['model'=>'Client'])}}">Clients</a></li>
-              <li><a href="{{route('listing.index',['model'=>'Product'])}}">Products</a></li>
             </ul>
           </li>
         </ul>

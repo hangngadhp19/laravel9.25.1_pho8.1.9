@@ -28,60 +28,38 @@
 		<?php
 			} else {
 		?>
-		<form class="form-horizontal form-label-left" method="post" action="{{route('editing.store',['model'=>'Client'])}}">
+		<form class="form-horizontal form-label-left" method="post" action="{{route('editing.update',['model'=>$modelName, 'id'=>$model_data->id])}}">
 			@csrf
+			@method('PATCH')
 			<div class="form-group row ">
 				<label class="control-label col-md-3 col-sm-3 ">Nom <span class="required">*</span></label>
 				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Nom" name="lastname" id="lastname" class="@error('lastname') is-invalid @enderror">
-					@error('lastname')
+					<input type="text" class="form-control" placeholder="Nom" name="name" id="name" class="@error('name') is-invalid @enderror" value="{{$model_data->name}}">
+					@error('name')
 					    <div class="alert alert-danger">{{ $message }}</div>
 					@enderror
 				</div>
 			</div>
 
 			<div class="form-group row ">
-				<label class="control-label col-md-3 col-sm-3 ">Prénom <span class="required">*</span></label>
+				<label class="control-label col-md-3 col-sm-3 ">Description <span class="required">*</span></label>
 				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Prénom" name="firstname" id="firstname" class="@error('firstname') is-invalid @enderror">
-					@error('firstname')
+					<textarea name="des" id="des" class="form-control" rows="3" placeholder="Description" class="@error('firstname') is-invalid @enderror">{{$model_data->des}}</textarea>
+					@error('des')
 					    <div class="alert alert-danger">{{ $message }}</div>
 					@enderror
 				</div>
 			</div>
 
 			<div class="form-group row ">
-				<label class="control-label col-md-3 col-sm-3 ">Email <span class="required">*</span></label>
+				<label class="control-label col-md-3 col-sm-3 ">Prix <span class="required">*</span></label>
 				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Email" name="email" id="email" class="@error('email') is-invalid @enderror">
-					@error('email')
+					<input type="text" class="form-control" placeholder="Prix" name="price" id="price" class="@error('price') is-invalid @enderror" value="{{$model_data->price}}">
+					@error('price')
 					    <div class="alert alert-danger">{{ $message }}</div>
 					@enderror
 				</div>
 			</div>
-
-			<div class="form-group row ">
-				<label class="control-label col-md-3 col-sm-3 ">Numéro de téléphone  <span class="required">*</span></label>
-				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Numéro de téléphone" name="tel" id="tel" class="@error('tel') is-invalid @enderror">
-					@error('tel')
-					    <div class="alert alert-danger">{{ $message }}</div>
-					@enderror
-				</div>
-			</div>
-			
-			
-			<div class="form-group row">
-				<label class="control-label col-md-3 col-sm-3 ">Adresse <span class="required">*</span>
-				</label>
-				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Adresse" name="adress" id="adress" class="@error('adress') is-invalid @enderror">
-					@error('adress')
-					    <div class="alert alert-danger">{{ $message }}</div>
-					@enderror
-				</div>
-			</div>
-
 
 			<div class="ln_solid"></div>
 			<div class="form-group">

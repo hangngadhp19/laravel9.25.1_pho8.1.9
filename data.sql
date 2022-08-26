@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `laravel_demo`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `laravel_demo` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `laravel_demo`;
-
---
 -- Table structure for table `admins`
 --
 
@@ -48,7 +40,7 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (1,'nguyen','hangnga352@gmail.com','$2y$10$E0.CzpYOjmUOZXKVq0ucF.A6z.M2w1x8F7Yy6.4kdKdMATPI8ebq2','2022-08-22 17:37:04','2022-08-22 17:37:04');
+INSERT INTO `admins` VALUES (1,'Nguyen','hangnga352@gmail.com','$2y$10$AZuAVDKbSyqPx/TvY4oo0O2QPxd1QueArVRXVTfWf.ymlH8v/yvu6','2022-08-26 03:26:16','2022-08-26 03:26:16');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,11 +58,10 @@ CREATE TABLE `clients` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tel` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status_devis` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,8 +70,90 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'NGUYEN','Nga','hangnga253@gmail.com','+33787036512','2 rue Princess 75006 Paris',0,'2022-08-24 10:19:42','2022-08-24 10:19:42'),(2,'Pham','Hung','hangnga253@yahoo.com','+33787236598','12 rue Princesse 75002 Paris',1,'2022-08-24 10:23:49','2022-08-24 19:58:39'),(17,'Ho','Tham','tham.ho@gmail.com','+33787265481','Paris',0,'2022-08-24 19:59:24','2022-08-24 19:59:24'),(18,'Truong','Thanh','truong.thanh@gmail.com','+33787345286','Paris',0,'2022-08-24 19:59:53','2022-08-24 19:59:53');
+INSERT INTO `clients` VALUES (3,'Nguyen','Ta','nguyen.ta@gmail.com','+337870467823','Paris','2022-08-26 07:00:18','2022-08-26 07:00:18'),(4,'Pham','Hung','pham.hung@gmail.com','+33787468192','Paris','2022-08-26 07:00:49','2022-08-26 07:00:49'),(5,'Ly','Phuc','ly.phuc@gmail.com','+33787569471','Paris','2022-08-26 07:01:17','2022-08-26 07:01:17'),(6,'Truong','May','truong.may@gmail.com','+33787048173','Paris','2022-08-26 07:01:45','2022-08-26 07:01:45');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `devis`
+--
+
+DROP TABLE IF EXISTS `devis`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `devis` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `des` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `devis`
+--
+
+LOCK TABLES `devis` WRITE;
+/*!40000 ALTER TABLE `devis` DISABLE KEYS */;
+INSERT INTO `devis` VALUES (2,'Devis 1','Devis 1 description','2022-08-26 03:45:50','2022-08-26 07:06:28'),(4,'Devis 2','Devis 2 description','2022-08-26 07:06:16','2022-08-26 07:06:16');
+/*!40000 ALTER TABLE `devis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `devis_client`
+--
+
+DROP TABLE IF EXISTS `devis_client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `devis_client` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_devis` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `status_devis` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `devis_client`
+--
+
+LOCK TABLES `devis_client` WRITE;
+/*!40000 ALTER TABLE `devis_client` DISABLE KEYS */;
+INSERT INTO `devis_client` VALUES (3,2,1,0,'2022-08-26 06:19:46','2022-08-26 06:59:07'),(4,2,3,1,'2022-08-26 07:04:45','2022-08-26 07:04:45'),(5,4,6,1,'2022-08-26 07:07:42','2022-08-26 07:07:42');
+/*!40000 ALTER TABLE `devis_client` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `devis_pro`
+--
+
+DROP TABLE IF EXISTS `devis_pro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `devis_pro` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_devis` int(11) NOT NULL,
+  `id_pro` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `devis_pro`
+--
+
+LOCK TABLES `devis_pro` WRITE;
+/*!40000 ALTER TABLE `devis_pro` DISABLE KEYS */;
+INSERT INTO `devis_pro` VALUES (16,3,7,'2022-08-26 07:05:19','2022-08-26 07:05:19'),(19,4,6,'2022-08-26 07:06:38','2022-08-26 07:06:38'),(20,4,7,'2022-08-26 07:06:38','2022-08-26 07:06:38'),(21,2,5,'2022-08-26 07:08:48','2022-08-26 07:08:48'),(22,2,8,'2022-08-26 07:08:48','2022-08-26 07:08:48');
+/*!40000 ALTER TABLE `devis_pro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -124,7 +197,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +206,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_22_191557_create_admins_table',1),(6,'2022_08_24_111454_create_clients_table',2);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_08_22_191557_create_admins_table',1),(6,'2022_08_24_111454_create_clients_table',1),(7,'2022_08_26_035947_create_product_table',1),(8,'2022_08_26_051154_create_devis_table',1),(9,'2022_08_26_051650_create_devis_pro_table',1),(10,'2022_08_26_051706_create_devis_client_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,6 +268,34 @@ LOCK TABLES `personal_access_tokens` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `des` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (5,'Keyboard','Keyboard description',123.00,'2022-08-26 07:02:59','2022-08-26 07:02:59'),(6,'Mouse','Mouse description',87.00,'2022-08-26 07:03:16','2022-08-26 07:03:16'),(7,'Monitor','Monitor description',200.00,'2022-08-26 07:03:38','2022-08-26 07:03:38'),(8,'Wifi','Wifi description',189.00,'2022-08-26 07:04:13','2022-08-26 07:04:13');
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -233,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-25  0:14:29
+-- Dump completed on 2022-08-26 11:12:26

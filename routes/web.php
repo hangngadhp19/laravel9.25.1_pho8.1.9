@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\EditingController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\DevisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,11 @@ Route::middleware(['admin'])->group(function () {
 	Route::delete('/admin/editing/{model}/{id}', [EditingController::class, 'destroy'])->name('editing.destroy')->where('id', '[0-9]{1,30}');
 	Route::get('/admin/editing/{model}/{id}', [EditingController::class, 'edit'])->name('editing.edit')->where('id', '[0-9]{1,30}');
 	Route::patch('/admin/editing/{model}/{id}', [EditingController::class, 'update'])->name('editing.update')->where('id', '[0-9]{1,30}');
-	
-	Route::get('/admin/send-email/{model}/{id}', [EmailController::class, 'send'])->name('email.send')->where('id', '[0-9]{1,30}');
-	Route::patch('/admin/send-email/{model}/{id}/{status}', [EmailController::class, 'update'])->name('email.update')->where('id', '[0-9]{1,30}');
+
+	Route::get('/admin/devis/{id}', [DevisController::class, 'create'])->name('devis.create')->where('id', '[0-9]{1,30}');
+	Route::post('/admin/devis/{id}', [DevisController::class, 'store'])->name('devis.store');
+
+	Route::get('/admin/send-email/{id}', [EmailController::class, 'send'])->name('email.send')->where('id', '[0-9]{1,30}');
+	Route::patch('/admin/send-email/{id_devis}/{id_client}/{status}', [EmailController::class, 'update'])->name('email.update')->where('id_devis', '[0-9]{1,30}');
 	
 });

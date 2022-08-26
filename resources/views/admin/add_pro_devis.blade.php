@@ -42,44 +42,33 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <table class="table" style="text-align: right;">
-                <tr><td><a href="{{route('editing.create',['model'=>$modelName])}}"><button type="button" class="btn btn-info">Add</button></a></td></tr>
-            </table>
-
+	    <form class="form-horizontal form-label-left" method="post" action="{{route('devis.store',['id'=>$id_devis])}}">
+	    @csrf
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Email</th>
-		  <th>Devis Accepte</th>
-                  <th>Action</th>
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach($records as $record) { ?>
                 <tr>
-                  <th scope="row">{{ $record->id }}</th>
-                  <td>{{ $record->lastname }}</td>
-                  <td>{{ $record->firstname }}</td>
-                  <td>{{ $record->email }}</td>
-		  <td>{{ $record->name_devis }}</td>
-                  <td>
-                    <form action="{{route('editing.destroy',['model'=>'Client', 'id'=>$record->id])}}" method="post">
-                      <a href="{{route('editing.edit',['model'=>'Client', 'id'=>$record->id])}}" class="btn btn-info">Edit</a> | 
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger" onclick="if (confirm('Are you sure?'))
-											$(this).parent().find('form').submit();
-										else
-											return false;">Delete</button>
-                    </form>
-                  </td>
+                  <th scope="row"><input type="checkbox" value="{{ $record->id }}" name="id_pro[]" id="id_pro[]" 
+					<?php echo isset($arr_id_pro_choise[$record->id]) && ($arr_id_pro_choise[$record->id]==$record->id) ? "checked" : "";  ?>></th>
+                  <td>{{ $record->name }}</td>
+                  <td>{{ $record->price }}</td>
                 </tr>
                 <?php } ?>
+		<tr>
+		  <td colspan="3">
+                    <button type="submit" class="btn btn-success">Submit</button>
+		  </td>
+		</tr>
               </tbody>
             </table>
+	    </form>
             <?=$records->links("pagination::bootstrap-4")?>
           </div>
         </div>

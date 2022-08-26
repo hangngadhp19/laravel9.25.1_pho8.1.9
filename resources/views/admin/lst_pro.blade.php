@@ -51,9 +51,7 @@
                 <tr>
                   <th>#</th>
                   <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Email</th>
-		  <th>Devis Accepte</th>
+                  <th>Price</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -61,13 +59,11 @@
                 <?php foreach($records as $record) { ?>
                 <tr>
                   <th scope="row">{{ $record->id }}</th>
-                  <td>{{ $record->lastname }}</td>
-                  <td>{{ $record->firstname }}</td>
-                  <td>{{ $record->email }}</td>
-		  <td>{{ $record->name_devis }}</td>
+                  <td>{{ $record->name }}</td>
+                  <td>{{ $record->price }}</td>
                   <td>
-                    <form action="{{route('editing.destroy',['model'=>'Client', 'id'=>$record->id])}}" method="post">
-                      <a href="{{route('editing.edit',['model'=>'Client', 'id'=>$record->id])}}" class="btn btn-info">Edit</a> | 
+                    <form action="{{route('editing.destroy',['model'=>$modelName, 'id'=>$record->id])}}" method="post"> | 
+                      <a href="{{route('editing.edit',['model'=>$modelName, 'id'=>$record->id])}}" class="btn btn-info">Edit</a> | 
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-danger" onclick="if (confirm('Are you sure?'))

@@ -43,6 +43,9 @@ Route::middleware(['admin'])->group(function () {
 	Route::post('/admin/devis/{id}', [DevisController::class, 'store'])->name('devis.store');
 
 	Route::get('/admin/send-email/{id}', [EmailController::class, 'send'])->name('email.send')->where('id', '[0-9]{1,30}');
-	Route::patch('/admin/send-email/{id_devis}/{id_client}/{status}', [EmailController::class, 'update'])->name('email.update')->where('id_devis', '[0-9]{1,30}');
 	
 });
+
+Route::get('/admin/send-email/{id_devis}/{id_client}/{status}', [EmailController::class, 'update'])->name('email.update')->where('id_devis', '[0-9]{1,30}');
+
+

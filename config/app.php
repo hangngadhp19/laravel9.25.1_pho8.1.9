@@ -181,6 +181,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+	//niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+	//Barryvdh\DomPDF\ServiceProvider::class,
+	Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -210,6 +213,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+	//'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+	//'PDF' => Barryvdh\DomPDF\Facade::class,
+	'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
     ])->toArray(),
 
 ];

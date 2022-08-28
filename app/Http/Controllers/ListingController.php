@@ -26,15 +26,21 @@ class ListingController extends Controller
 	foreach($records as $key=>$obj){
 
 		$model_devis_client = new DevisCLient();
-		$data_devis_client = $model_devis_client->where("id_client", $obj->id)->where("status_devis", 1)->first();
+		$data_devis_client = $model_devis_client->where("id_client", $obj->id)->where("status_devis", 1)->get();
+		
+		$arr_devis_name[$key] = array();
+		foreach ($data_devis_client as $data) {
+			$id_devis = !empty($data)  ? $data->id_devis : 0;
 
-		$id_devis = !empty($data_devis_client)  ? $data_devis_client->id_devis : 0;
-
+			if ($id_devis > 0) {
+				$model_devis = new Devis();
+				$data_devis = $model_devis->where("id", $id_devis)->first();
+				$arr_devis_name[$key][] = !empty($data_devis->name) ? $data_devis->name : '';
+			}
+		}
 		$records[$key]->name_devis = '';
-		if ($id_devis > 0) {
-			$model_devis = new Devis();
-			$data_devis = $model_devis->where("id", $id_devis)->first();
-			$records[$key]->name_devis = $data_devis->name;
+		if (count($arr_devis_name[$key]) > 0) {
+			$records[$key]->name_devis = implode(", ", $arr_devis_name[$key]);
 		}
 	}
 
